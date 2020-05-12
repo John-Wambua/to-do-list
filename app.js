@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 
 const _=require('lodash');
 
-const port=3000;
+let port=process.env.PORT;
 const app=express();
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -137,7 +137,9 @@ app.post('/delete',(req,res)=>{
 
 });
 
-
+if (port==null || port==''){
+    port=3000;
+}
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`)
